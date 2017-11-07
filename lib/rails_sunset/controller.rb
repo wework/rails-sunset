@@ -44,6 +44,7 @@ module RailsSunset
 
     def normalize_link(link, _params)
       link = link.call(_params) if link.respond_to? :call
+      return if link.nil?
       return link if link.is_a? String
       raise TypeError, 'The link should be a string, or a lambda that returns a string'
     end
