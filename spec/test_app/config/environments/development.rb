@@ -15,8 +15,6 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   config.action_controller.perform_caching = false
 
-  config.active_record.migration_error = :page_load
-
   config.cache_store = :null_store
 
   # Print deprecation notices to the Rails logger.
