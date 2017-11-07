@@ -4,21 +4,21 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![MIT License][license-image]][license-url]
 
-Rails Sunset lets you create deprecation headers in a Railsy way, using the [Sunset][sunset-draft] header. The Sunset header is an in-development HTTP response header that helps you mark endpoints as going away.
-
-Why? Because we all have those trash endpoints we'd love to delete, but you can't just delete them without causing a full on garbage fire.
+Rails Sunset lets you deprecate URLs (API or otherwise) in a Railsy way. Why? Because we all have those trash endpoints we'd love to delete, but we can't just delete them without turning that trash into a full-on garbage fire.
 
 ![Take out the garbage](https://user-images.githubusercontent.com/67381/32471240-46bc2786-c32a-11e7-8d0b-903ade85413b.jpeg)
 
-> This specification defines the Sunset HTTP response header field, which indicates that a URI is likely to become unresponsive at a specified point in the future.
-
-[sunset-draft]: https://tools.ietf.org/html/draft-wilde-sunset-header-03
+The [Sunset header][sunset-draft] is an in-development HTTP response header that is aiming to standardize how URLs are marked for deprecation.
 
 When output, it looks like this:
 
 ```
 Sunset: Sat, 31 Dec 2018 23:59:59 GMT
 ```
+
+This can be combined with a `Link: <http://foo.com/something> rel="sunset"` which can be anything that might help a developer know what is going on. Maybe link to your API documentation for the new resource, the OpenAPI/JSON Schema definitions, or even a blog post explaining the change.
+
+[sunset-draft]: https://tools.ietf.org/html/draft-wilde-sunset-header-03
 
 ## Usage
 
