@@ -3,10 +3,14 @@ module RailsSunset
     extend ActiveSupport::Concern
 
     module ClassMethods
+      def sunset_method(method, datetime, link: nil)
+        sunset(datetime, link: link, only: [method])
+      end
+
       def sunset(datetime, link: nil, only: nil)
         after_action(only: only) do |controller|
           datetime = normalize_datetime(datetime)
-          link = normalize_link(link)
+          link = normalize_link(link, params)
 
           # Shove a deprecation warning into the console or wherever it goes
           klass = controller.class
@@ -37,10 +41,9 @@ module RailsSunset
       return datetime if datetime.respond_to? :httpdate
       raise TypeError, 'The date should be a Date, DateTime, Time or string containing a valid date and time'
     end
-    protected
 
-    def normalize_link(link)
-      link = link.call if link.respond_to? :call
+    def normalize_link(link, _params)
+      link = link.call(_params) if link.respond_to? :call
       return link if link.is_a? String
       raise TypeError, 'The link should be a string, or a lambda that returns a string'
     end
