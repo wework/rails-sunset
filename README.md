@@ -33,13 +33,14 @@ class FooController
   # Deprecate all methods and point them to a blog post
   sunset DateTime.new(2019, 1, 1), link: 'http://example.com/blog/get-them-foos-outta-here'
 
-  # Deprecate two and point to their new resources, but do it via only: []
-  sunset DateTime.new(2019, 1, 1), link: api_v3_companies, only: [:index]
-  sunset DateTime.new(2019, 1, 1), link: ->(){ api_v3_company(params['id']) }, only: [:show]
+  # Deprecate only update and destroy but dont explain why
+  sunset DateTime.new(2019, 1, 1), only: [:update, :destroy]
 
-  # Maybe we should add sunset_method for that?
-  sunset_method :index, DateTime.new(2019, 1, 1), link: api_v3_companies
-  sunset_method :show, DateTime.new(2019, 1, 1), link: ->(){ api_v3_company(params['id']) }
+  # Deprecate just the one method with this shortcut
+  sunset_method :create, DateTime.new(2019, 1, 1)
+
+  # Use a lambda instead of a string to inject params
+  sunset_method :destroy, DateTime.new(2019, 1, 1), lambda { |params| "https://api.example.com/v3/companies/#{params['id']}" }
 end
 ```
 
