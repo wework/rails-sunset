@@ -27,7 +27,7 @@ describe PartialPoosController, type: :controller do
 
       it 'will contain a link to a blog post' do
         expect(subject.headers['Link']).to eql(
-          '<https://api.example.com/unicorns>; rel="sunset";'
+          '<http://test.host/unicorns>; rel="sunset";'
         )
       end
     end
@@ -43,7 +43,7 @@ describe PartialPoosController, type: :controller do
 
       it 'will contain a link to a blog post' do
         expect(subject.headers['Link']).to eql(
-          '<https://api.example.com/unicorns/123>; rel="sunset";'
+          '<http://test.host/unicorns/123>; rel="sunset";'
         )
       end
     end
@@ -59,7 +59,7 @@ describe PartialPoosController, type: :controller do
 
       it 'will contain a link to a blog post' do
         expect(subject.headers['Link']).to eql(
-          '<https://api.example.com/unicorns/123>; rel="sunset";'
+          '<http://test.host/unicorns/123>; rel="sunset";'
         )
       end
     end
