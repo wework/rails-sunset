@@ -1,0 +1,22 @@
+language: ruby
+before_install:
+  - gem install bundler
+script:
+  - bundle exec rspec
+gemfile:
+  - gemfiles/rails_4.2.gemfile
+  - gemfiles/rails_5.0.gemfile
+  - gemfiles/rails_5.1.gemfile
+rvm:
+  - 2.2
+  - 2.3
+  - 2.4
+  # - ruby-head
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 2.4
+      gemfile: gemfiles/rails_4.2.gemfile
+    - rvm: ruby-head
+      gemfile: gemfiles/rails_4.2.gemfile

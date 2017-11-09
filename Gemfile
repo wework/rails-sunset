@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in we-call.gemspec
 gemspec
+
+group :development, :test do
+  gem "appraisal"
+  gem "wwtd"
+end

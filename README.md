@@ -38,7 +38,7 @@ class FooController
   sunset_method :create, DateTime.new(2019, 1, 1)
 
   # Use a lambda instead of a string to inject params
-  sunset_method :destroy, DateTime.new(2019, 1, 1), link: lambda { |params| "https://api.example.com/v3/companies/#{params['id']}" }
+  sunset_method :destroy, DateTime.new(2019, 1, 1), link: -> { v3_company_url(params['id']) }
 end
 ```
 
@@ -52,7 +52,7 @@ Literring your controllers with all those dates certainly doesn't seem ideal, it
 
 One approach would be to make a `config/initializer/deprecations.rb` with some "milestones" like this:
 
-```
+``` ruby
 # config/initializer/deprecations.rb
 
 SUNSET_MILESTONES = {
@@ -74,11 +74,15 @@ Call em what you want, but something like this should keep things on track.
 - **Ruby:** v2.2 - v2.4
 - **Rails:** v4.2 - v5.2
 
+_**Note:** Although we support Ruby v2.4 and Rails v4.2, they [don't really like each other][it-is-known] all that much. As such, expect failures on Travis for that combination._
+
+[it-is-known]: https://stackoverflow.com/questions/41504106/ruby-2-4-and-rails-4-stack-level-too-deep-systemstackerror
+
 ## Testing
 
 To run tests and modify locally, you'll want to `bundle install` in this directory.
 
-```
+``` shell
 bundle exec appraisal rspec
 ```
 

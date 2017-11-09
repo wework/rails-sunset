@@ -9,5 +9,5 @@
 /tmp/
 /spec/test_app/log/
 .byebug_history
+.ruby-version
 Gemfile.lock
-*.sqlite3

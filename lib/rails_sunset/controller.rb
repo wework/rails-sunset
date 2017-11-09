@@ -1,3 +1,4 @@
+
 module RailsSunset
   module Controller
     extend ActiveSupport::Concern
@@ -11,11 +12,12 @@ module RailsSunset
         after_action(only: only) do |controller|
           datetime = normalize_datetime(datetime)
           link = normalize_link(link, params)
+          user_agent = request.headers['User-Agent']
 
           # Shove a deprecation warning into the console or wherever it goes
           klass = controller.class
           method = params['action']
-          ActiveSupport::Deprecation.warn("#{klass}##{method} is deprecated for removal on #{datetime.iso8601}")
+          ActiveSupport::Deprecation.warn("#{klass}##{method} deprecated endpoint (sunset date #{datetime.iso8601}) has been called by #{user_agent}")
 
           # Shove a Sunset header into HTTP Response for clients to sniff on
           # https://tools.ietf.org/html/draft-wilde-sunset-header-03
@@ -43,7 +45,7 @@ module RailsSunset
     end
 
     def normalize_link(link, _params)
-      link = link.call(_params) if link.respond_to? :call
+      link = instance_exec(&(link)) if link.respond_to? :call
       return if link.nil?
       return link if link.is_a? String
       raise TypeError, 'The link should be a string, or a lambda that returns a string'

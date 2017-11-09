@@ -1,5 +1,4 @@
 require "spec_helper"
-require "byebug"
 
 RSpec.describe PoosController, type: :controller do
   describe "sunset headers" do
@@ -14,7 +13,7 @@ RSpec.describe PoosController, type: :controller do
     ].each do |test_case|
 
       context "when calling #{test_case[:name]}" do
-        subject { send test_case[:http_method], test_case[:name], params: test_case[:params] }
+        subject { send_request(test_case[:http_method], test_case[:name], test_case[:params]) }
 
         it 'will contain a HTTP formatted date in Sunset' do
           expect(subject.headers['Sunset']).to eql http_date
