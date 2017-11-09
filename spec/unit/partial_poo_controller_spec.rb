@@ -1,5 +1,4 @@
 require "spec_helper"
-require "byebug"
 
 describe PartialPoosController, type: :controller do
   describe "sunset headers" do
@@ -35,7 +34,7 @@ describe PartialPoosController, type: :controller do
     context 'when calling update (which has a special rule)' do
       let(:http_date) { "Fri, 03 Jan 3000 00:00:00 GMT" }
 
-      subject { patch :update, params: { id: '123' } }
+      subject { send_request(:patch, :update, id: '123') }
 
       it 'will contain a HTTP formatted date in Sunset' do
         expect(subject.headers['Sunset']).to eql http_date
@@ -51,7 +50,7 @@ describe PartialPoosController, type: :controller do
     context 'when calling destroy (which has a special rule)' do
       let(:http_date) { "Sat, 04 Jan 3000 00:00:00 GMT" }
 
-      subject { patch :destroy, params: { id: '123' } }
+      subject { send_request(:patch, :destroy, id: '123') }
 
       it 'will contain a HTTP formatted date in Sunset' do
         expect(subject.headers['Sunset']).to eql http_date

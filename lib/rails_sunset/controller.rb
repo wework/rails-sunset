@@ -1,3 +1,4 @@
+
 module RailsSunset
   module Controller
     extend ActiveSupport::Concern

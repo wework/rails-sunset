@@ -20,15 +20,11 @@ Gem::Specification.new do |spec|
   spec.bindir               = "bin"
   spec.require_paths        = ["lib"]
 
-  spec.add_dependency "rails", ">= 4.2"
-  spec.add_dependency "activesupport"
+  spec.add_dependency "rails", ">= 4.2", "< 6"
 
-  spec.add_development_dependency "appraisal"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "coveralls"
-  spec.add_development_dependency "bundler", ">= 1.15"
-  spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", ">= 3.6"
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "byebug"
-  spec.add_development_dependency "simplecov", '~> 0.15'
+  spec.add_development_dependency "simplecov"
 end
