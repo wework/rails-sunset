@@ -38,7 +38,7 @@ class FooController
   sunset_method :create, DateTime.new(2019, 1, 1)
 
   # Use a lambda instead of a string to inject params
-  sunset_method :destroy, DateTime.new(2019, 1, 1), link: lambda { |params| "https://api.example.com/v3/companies/#{params['id']}" }
+  sunset_method :destroy, DateTime.new(2019, 1, 1), link: -> { v3_company_url(params['id']) }
 end
 ```
 
@@ -52,7 +52,7 @@ Literring your controllers with all those dates certainly doesn't seem ideal, it
 
 One approach would be to make a `config/initializer/deprecations.rb` with some "milestones" like this:
 
-```
+``` ruby
 # config/initializer/deprecations.rb
 
 SUNSET_MILESTONES = {
@@ -78,7 +78,7 @@ Call em what you want, but something like this should keep things on track.
 
 To run tests and modify locally, you'll want to `bundle install` in this directory.
 
-```
+``` shell
 bundle exec appraisal rspec
 ```
 
