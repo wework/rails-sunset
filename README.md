@@ -74,6 +74,10 @@ Call em what you want, but something like this should keep things on track.
 - **Ruby:** v2.2 - v2.4
 - **Rails:** v4.2 - v5.2
 
+_**Note:** Although we support Ruby v2.4 and Rails v4.2, they [don't really like each other][it-is-known] all that much. As such, expect failures on Travis for that combination._
+
+[it-is-known]: https://stackoverflow.com/questions/41504106/ruby-2-4-and-rails-4-stack-level-too-deep-systemstackerror
+
 ## Testing
 
 To run tests and modify locally, you'll want to `bundle install` in this directory.

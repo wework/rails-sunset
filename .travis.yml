@@ -1,0 +1,18 @@
+language: ruby
+before_install:
+  - gem install bundler
+before_script:
+  - appraisal install
+script:
+  - bundle exec appraisal rspec
+gemfiles:
+  - rails_4.2.gemfile
+  - rails_5.0.gemfile
+  - rails_5.1.gemfile
+rvm:
+  - 2.2
+  - 2.3
+  - 2.4
+  - ruby-head
+matrix:
+  fast_finish: true
