@@ -88,8 +88,7 @@ bundle exec appraisal rspec
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [wework/rails-sunset](https://github.com/wework/rails-sunset). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at [wework/rails-sunset](https://github.com/wework/rails-sunset). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 
 [coveralls-image]:https://coveralls.io/repos/github/wework/rails-sunset/badge.svg?branch=master
 [coveralls-url]:https://coveralls.io/github/wework/rails-sunset?branch=master
