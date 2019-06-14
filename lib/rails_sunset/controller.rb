@@ -11,7 +11,7 @@ module RailsSunset
       def sunset(datetime, link: nil, only: nil)
         after_action(only: only) do |controller|
           datetime = normalize_datetime(datetime)
-          link = normalize_link(link, params)
+          link = normalize_link(link)
           user_agent = request.headers['User-Agent']
 
           # Shove a deprecation warning into the console or wherever it goes
@@ -44,11 +44,11 @@ module RailsSunset
       raise TypeError, 'The date should be a Date, DateTime, Time or string containing a valid date and time'
     end
 
-    def normalize_link(link, _params)
+    def normalize_link(link)
       link = instance_exec(&(link)) if link.respond_to? :call
       return if link.nil?
       return link if link.is_a? String
-      raise TypeError, 'The link should be a string, or a lambda that returns a string'
+      raise TypeError, 'The link should be a string, or a proc/lambda that returns a string'
     end
   end
 end
