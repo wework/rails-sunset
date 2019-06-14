@@ -16,7 +16,7 @@ Sunset: Sat, 31 Dec 2018 23:59:59 GMT
 
 This can be combined with a `Link: <http://foo.com/something> rel="sunset"` which can be anything that might help a developer know what is going on. Maybe link to your API documentation for the new resource, the OpenAPI/JSON Schema definitions, or even a blog post explaining the change.
 
-[sunset-draft]: https://tools.ietf.org/html/draft-wilde-sunset-header-03
+[sunset-draft]: https://tools.ietf.org/html/rfc8594
 
 ## Usage
 
